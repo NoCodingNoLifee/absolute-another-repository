@@ -78,7 +78,15 @@ const nextConfig = {
   },
 };
 
-module.exports = () => {
+async function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+const delayTime = 20 * 60 * 1000;
+
+module.exports = async () => {
+  console.log("Starting delay");
+  await delay(delayTime);
   // Run the base config through any configured plugins
   return Object.values(plugins).reduce((acc, plugin) => plugin(acc), nextConfig);
 };
