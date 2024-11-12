@@ -43,4 +43,6 @@ export const config = {
 // Wire up the EditingRenderMiddleware handler
 const handler = new EditingRenderMiddleware().getHandler();
 
+console.log("JSS_EDITING_SECRET=" + process.env.JSS_EDITING_SECRET);
+
 export default handler;
