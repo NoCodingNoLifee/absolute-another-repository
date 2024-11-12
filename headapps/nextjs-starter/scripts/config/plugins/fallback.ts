@@ -6,6 +6,8 @@ import { getPublicUrl } from '@sitecore-jss/sitecore-jss-nextjs/utils';
  * This config will set fallback values for properties that were left empty
  * If neither env, nor other places had a proper value, this will ensure a fallback is set
  */
+const publicUrlFallback = (process.env.NODE_ENV !== 'production' ? getPublicUrl() : '');
+
 class FallbackPlugin implements ConfigPlugin {
   // should always come last
   order = 100;
@@ -15,7 +17,7 @@ class FallbackPlugin implements ConfigPlugin {
       defaultLanguage: config.defaultLanguage || 'en',
       sitecoreApiKey: config.sitecoreApiKey || 'no-api-key-set',
       layoutServiceConfigurationName: config.layoutServiceConfigurationName || 'default',
-      publicUrl: config.publicUrl || getPublicUrl(),
+      publicUrl: config.publicUrl || publicUrlFallback,
     });
   }
 }
