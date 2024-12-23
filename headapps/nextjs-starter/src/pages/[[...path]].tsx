@@ -12,6 +12,7 @@ import { SitecorePageProps } from 'lib/page-props';
 import { sitecorePagePropsFactory } from 'lib/page-props-factory';
 import { componentBuilder } from 'temp/componentBuilder';
 import { sitemapFetcher } from 'lib/sitemap-fetcher';
+import { useRouter } from 'next/router';
 
 const SitecorePage = ({
   notFound,
@@ -23,6 +24,14 @@ const SitecorePage = ({
     // Since Sitecore editors do not support Fast Refresh, need to refresh editor chromes after Fast Refresh finished
     handleEditorFastRefresh();
   }, []);
+  
+  const router = useRouter();
+  useEffect(() => {
+    if (router.isReady) {
+    //Here is the process to retrieve the article page from the GraphQL API. 
+      console.log("HELLO ROUTER HERE");
+    }
+    }, [router.query, router.isReady]);
 
   if (notFound || !layoutData.sitecore.route) {
     // Shouldn't hit this (as long as 'notFound' is being returned below), but just to be safe
@@ -80,6 +89,8 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 // revalidation (or fallback) is enabled and a new request comes in.
 export const getStaticProps: GetStaticProps = async (context) => {
   const props = await sitecorePagePropsFactory.create(context);
+
+  console.log('Static Props');
 
   return {
     props,
