@@ -10,6 +10,9 @@
         "runCommand": "next:start"
       }
     },
+    "buildTargets": [
+      "./authoring/XmCloudAuthoring.sln"
+    ],
     "postActions": {
         "actions":{
           "warmUpCm": {
