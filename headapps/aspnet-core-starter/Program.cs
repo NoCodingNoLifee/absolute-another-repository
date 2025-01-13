@@ -17,7 +17,10 @@ builder.Services.AddGraphQlClient(configuration =>
                 {
                     configuration.ContextId = sitecoreSettings.EdgeContextId;
                 })
-                .AddMultisite(); 
+                .AddMultisite();
+
+
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 if (sitecoreSettings.EnableLocalContainer)
 {
