@@ -3,8 +3,12 @@
     "namespace": "Security",
     "roles": [
         {
-            "domain": "sitecore",
-            "pattern": "Custom"
+            "domain": "Taiba",
+            "pattern": "Approver"
+        },
+        {
+            "domain": "Taiba",
+            "pattern": "Author"
         }
     ]
 }
